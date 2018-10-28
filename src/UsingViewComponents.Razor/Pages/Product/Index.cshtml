@@ -1,0 +1,26 @@
+﻿@page
+@model UsingViewComponents.Pages.Product.IndexModel
+@{
+    ViewData["Title"] = "Products";
+    Layout = "_ComponentLayout";
+}
+
+<table class="table table-sm table-bordered">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>Price</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var product in Model.Products)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Price</td>
+            </tr>
+        }
+    </tbody>
+</table>
+<a asp-action="Create" class="btn btn-primary">Create</a>
+
