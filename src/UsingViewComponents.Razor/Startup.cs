@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using UsingViewComponents.Models;
 
 namespace UsingViewComponents
 {
@@ -24,6 +25,8 @@ namespace UsingViewComponents
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddSingleton<IProductRepository, MemoryProductRepository>();
+            services.AddSingleton<ICityRepository, MemoryCityRepository>();
             services.Configure<CookiePolicyOptions>(options =>
             {
                 // This lambda determines whether user consent for non-essential cookies is needed for a given request.
@@ -51,6 +54,7 @@ namespace UsingViewComponents
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseCookiePolicy();
+            app.UseStatusCodePages();
 
             app.UseMvc();
         }

@@ -10,10 +10,16 @@ namespace UsingViewComponents.Pages.Product
 {
     public class IndexModel : PageModel
     {
+        private IProductRepository _productRepository;
+
+        public IndexModel(IProductRepository productRepository)
+        {
+            _productRepository = productRepository;
+        }
+
         public void OnGet()
         {
-            IProductRepository repo = new MemoryProductRepository();
-            Products = repo.Products;
+            Products = _productRepository.Products;
         }
 
         public IEnumerable<UsingViewComponents.Models.Product> Products { get; set; }
